@@ -42,37 +42,71 @@ function Work({
       )}
 
       <div className="work__grid">
-        {list.map((project, idx) => (
-          <article
-            key={project.id}
-            className={`work__card ${idx % 2 === 0 ? 'work__card--left' : 'work__card--right'}`}
-            style={{ '--card-color': project.color }}
-          >
-            <div className="work__thumb">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="work__image"
-                loading="lazy"
-              />
-              <span className="work__year">{project.year}</span>
-            </div>
-            <div className="work__info">
-              <h3 className="work__title">{project.title}</h3>
-              <p className="work__desc">{project.description}</p>
-              <div className="work__tags">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="work__tag">
-                    {tag}
-                  </span>
-                ))}
+        {list.map((project, idx) => {
+          const href = project.slug ? `/work/${project.slug}` : null
+          return (
+            <article
+              key={project.id}
+              className={`work__card ${idx % 2 === 0 ? 'work__card--left' : 'work__card--right'} ${
+                href ? 'work__card--linked' : ''
+              }`}
+              style={{ '--card-color': project.color }}
+            >
+              <div className="work__thumb">
+                {href ? (
+                  <Link
+                    to={href}
+                    className="work__thumb-link"
+                    aria-label={`View ${project.title} case study`}
+                  >
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="work__image"
+                      loading="lazy"
+                    />
+                  </Link>
+                ) : (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="work__image"
+                    loading="lazy"
+                  />
+                )}
+                <span className="work__year">{project.year}</span>
               </div>
-              <a href="#" className="work__link">
-                View case study <span className="work__arrow">→</span>
-              </a>
-            </div>
-          </article>
-        ))}
+              <div className="work__info">
+                <h3 className="work__title">
+                  {href ? (
+                    <Link to={href} className="work__title-link">
+                      {project.title}
+                    </Link>
+                  ) : (
+                    project.title
+                  )}
+                </h3>
+                <p className="work__desc">{project.description}</p>
+                <div className="work__tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="work__tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                {href ? (
+                  <Link to={href} className="work__link">
+                    View case study <span className="work__arrow">→</span>
+                  </Link>
+                ) : (
+                  <span className="work__link work__link--disabled">
+                    Case study coming soon
+                  </span>
+                )}
+              </div>
+            </article>
+          )
+        })}
       </div>
 
     </section>

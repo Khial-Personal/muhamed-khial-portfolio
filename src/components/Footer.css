@@ -210,10 +210,11 @@
 
 .footer__marquee-item {
   font-size: clamp(3rem, 8vw, 6rem);
+  font-style: italic;
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1;
-  background: linear-gradient(135deg, #fafaf7 0%, #feca57 100%);
+  background: linear-gradient(135deg, #feca57, #ff6b6b);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
