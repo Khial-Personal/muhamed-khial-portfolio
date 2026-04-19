@@ -1,0 +1,27 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+}
+
+/* Display font — Lalezar — applied to headings and title-class elements only.
+   Body copy continues to use the site's default sans. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.hero__title,
+.hero__subtitle,
+.about__heading,
+.about__page-title,
+.work__heading,
+.work-page__title,
+.footer__thanks {
+  font-family: 'Carter One', system-ui;
+  font-weight: 400;
+}

@@ -1,0 +1,5 @@
+/* Home page — shared snap-scroll styles live in src/styles/snap.css.
+   This file is intentionally minimal; page-specific tweaks only. */
+.home-page {
+  position: relative;
+}

@@ -1,0 +1,187 @@
+/* ------------------------------------------------------------------
+   Home + Work page scroll presentation.
+
+   Snap + reveal animations are driven by GSAP ScrollTrigger in
+   `src/hooks/useSnapScroll.js`. This stylesheet provides:
+   - Full-viewport panel layout
+   - Sticky work header styling
+   - Mobile / reduced-motion overrides
+------------------------------------------------------------------- */
+
+:root {
+  --home-sticky-header: 7rem;
+}
+
+html.snap-scroll body {
+  overflow-x: hidden;
+}
+
+/* Panels are full-viewport so the reveal has room to play out */
+html.snap-scroll .hero,
+html.snap-scroll .work-page__intro,
+html.snap-scroll .work__card,
+html.snap-scroll .footer {
+  min-height: 100vh;
+}
+
+/* Work section: sticky header + no outer padding */
+html.snap-scroll .work {
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow: visible;
+}
+
+/* Sticky work header */
+html.snap-scroll .work__header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  /* Stretch background + bottom border edge-to-edge while keeping
+     inner content aligned to the 1200px container. */
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 1.25rem calc(50vw - 50%);
+  min-height: auto;
+  background: rgba(250, 250, 247, 0.92);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.snap-scroll .work__header-text {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 1rem 1.5rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+html.snap-scroll .work__label {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+html.snap-scroll .work__heading {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+html.snap-scroll .work__header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #666;
+  text-decoration: none;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease, border-color 0.2s ease, gap 0.2s ease;
+}
+
+html.snap-scroll .work__header-cta span {
+  transition: transform 0.2s ease;
+}
+
+html.snap-scroll .work__header-cta:hover {
+  color: #1a1a1a;
+  border-bottom-color: rgba(0, 0, 0, 0.35);
+  gap: 0.6rem;
+}
+
+html.snap-scroll .work__header-cta:hover span {
+  transform: translateX(2px);
+}
+
+html.snap-scroll .work__grid {
+  gap: 0;
+}
+
+html.snap-scroll .work__card {
+  padding: var(--home-sticky-header) 0 4rem;
+  align-content: center;
+  scroll-margin-top: var(--home-sticky-header);
+}
+
+/* Last card before the dark footer: extend its light background edge-to-edge
+   and round the bottom corners so the dark footer shows through for a
+   modern, card-like transition. */
+html.snap-scroll .work__card:last-child {
+  position: relative;
+  z-index: 1;
+  background: #fafaf7;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: calc(50vw - 50%);
+  padding-right: calc(50vw - 50%);
+  border-bottom-left-radius: 56px;
+  border-bottom-right-radius: 56px;
+}
+
+
+html.snap-scroll .footer {
+  /* Pulled up 56px behind the previous card's rounded corners so the
+     dark footer color shows through the cutouts. */
+  margin-top: -56px;
+  position: relative;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: calc(4rem + 56px);
+  padding-bottom: 4rem;
+}
+
+html.snap-scroll .footer__inner {
+  width: 100%;
+}
+
+/* Kill the infinite `float` on hero blurred shapes while snap-scroll is
+   active — two 380px blurs bouncing forever are a real GPU cost. */
+html.snap-scroll .hero__shape {
+  animation: none !important;
+}
+
+/* ------------------------------------------------------------------
+   Mobile / coarse pointers: full viewport min-heights are too heavy
+   and snap/reveal are disabled anyway. Let the content flow.
+------------------------------------------------------------------- */
+@media (max-width: 768px), (pointer: coarse) {
+  html.snap-scroll .hero,
+  html.snap-scroll .work-page__intro,
+  html.snap-scroll .work__card,
+  html.snap-scroll .footer {
+    min-height: auto;
+  }
+
+  html.snap-scroll .work__header {
+    padding: 1rem 1.5rem;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Reduced motion
+------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html.snap-scroll .hero,
+  html.snap-scroll .work-page__intro,
+  html.snap-scroll .work__card,
+  html.snap-scroll .footer {
+    min-height: auto;
+  }
+
+  html.snap-scroll .work__header {
+    position: static;
+    backdrop-filter: none;
+  }
+}

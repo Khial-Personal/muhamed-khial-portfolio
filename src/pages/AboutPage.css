@@ -1,0 +1,45 @@
+.about-page {
+  padding-top: 6rem;
+  padding-bottom: 2rem;
+  background: #fafaf7;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-page::before,
+.about-page::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-page::before {
+  width: 400px;
+  height: 400px;
+  background: #caffbf;
+  top: -120px;
+  right: -100px;
+}
+
+.about-page::after {
+  width: 360px;
+  height: 360px;
+  background: #bdb2ff;
+  top: 5%;
+  left: -80px;
+}
+
+.about-page > .about {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .about-page {
+    padding-top: 4rem;
+  }
+}
