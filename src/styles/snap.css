@@ -119,7 +119,10 @@ html.snap-scroll .work__grid {
 }
 
 html.snap-scroll .work__card {
-  padding: var(--home-sticky-header) 0 4rem;
+  /* Use longhand so the last-child's full-bleed padding-left/right
+     isn't zeroed out by the shorthand. */
+  padding-top: var(--home-sticky-header);
+  padding-bottom: 4rem;
   align-content: center;
   scroll-margin-top: var(--home-sticky-header);
 }
