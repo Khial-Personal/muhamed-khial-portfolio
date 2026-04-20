@@ -156,16 +156,13 @@ html.snap-scroll .hero__shape {
    Mobile / coarse pointers: full viewport min-heights are too heavy
    and snap/reveal are disabled anyway. Let the content flow.
 ------------------------------------------------------------------- */
-@media (max-width: 768px), (max-height: 1100px), (pointer: coarse) {
+@media (max-width: 768px), (pointer: coarse) {
   html.snap-scroll .hero,
   html.snap-scroll .work-page__intro,
   html.snap-scroll .work__card,
   html.snap-scroll .about-page,
   html.snap-scroll .experience-page,
-  html.snap-scroll .footer,
-  .hero,
-  .about-page,
-  .experience-page {
+  html.snap-scroll .footer {
     min-height: auto;
   }
 
