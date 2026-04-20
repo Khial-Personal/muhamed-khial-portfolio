@@ -33,6 +33,17 @@ html.snap-scroll .work {
   overflow: visible;
 }
 
+/* Universal: kill .work's bottom padding when it's followed by the
+   footer, so the last card's rounded bottom meets the dark footer
+   directly with no cream gap. Also lift it above the footer so the
+   rounded cutouts render *over* the dark footer color, not under. */
+.work:has(+ .footer) {
+  padding-bottom: 0;
+  overflow: visible;
+  position: relative;
+  z-index: 1;
+}
+
 /* Sticky work header */
 html.snap-scroll .work__header {
   position: sticky;
@@ -115,8 +126,9 @@ html.snap-scroll .work__card {
 
 /* Last card before the dark footer: extend its light background edge-to-edge
    and round the bottom corners so the dark footer shows through for a
-   modern, card-like transition. */
-html.snap-scroll .work__card:last-child {
+   modern, card-like transition. Universal — applies on all pages,
+   snap or no snap. */
+.work__card:last-child {
   position: relative;
   z-index: 1;
   background: #fafaf7;
@@ -128,17 +140,22 @@ html.snap-scroll .work__card:last-child {
   border-bottom-right-radius: 56px;
 }
 
-
-html.snap-scroll .footer {
-  /* Pulled up 56px behind the previous card's rounded corners so the
-     dark footer color shows through the cutouts. */
+/* Pull footer up 56px behind the previous section's rounded corners so
+   the dark footer peeks through the cutouts. Applies wherever a footer
+   follows the cream content block — Home, Work, About. */
+.work + .footer,
+.work-page > .footer,
+.home-page > .footer {
   margin-top: -56px;
   position: relative;
   z-index: 0;
+  padding-top: calc(6rem + 56px);
+}
+
+html.snap-scroll .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: calc(4rem + 56px);
   padding-bottom: 4rem;
 }
 
