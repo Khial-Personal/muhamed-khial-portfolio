@@ -143,14 +143,18 @@ export default function useSnapScroll(
       }
     }
 
-    // Initial setup — after layout settles
-    computePanels()
-    // Align to the nearest panel on mount
+    // Initial setup — after layout settles.
+    // Always start at the FIRST panel on route mount, otherwise a
+    // preserved scroll from the previous route can make us land mid-list.
+    panels = Array.from(document.querySelectorAll(targetSelector))
+    current = 0
+    window.scrollTo({ top: 0, behavior: 'instant' })
     requestAnimationFrame(() => {
-      computePanels()
-      if (panels[current]) {
-        const top = panels[current].getBoundingClientRect().top + window.scrollY
-        window.scrollTo({ top, behavior: 'auto' })
+      panels = Array.from(document.querySelectorAll(targetSelector))
+      current = 0
+      if (panels[0]) {
+        const top = panels[0].getBoundingClientRect().top + window.scrollY
+        window.scrollTo({ top, behavior: 'instant' })
       }
     })
 

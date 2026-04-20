@@ -1,0 +1,100 @@
+/* ------------------------------------------------------------------
+   Page entrance animations.
+
+   Apply `.page-enter` to a route's root container to fade+rise it in
+   on mount. Direct children stagger in, giving each page a subtle
+   choreography. Honors reduced-motion.
+------------------------------------------------------------------- */
+
+@keyframes page-enter-fade-up {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.992);
+    filter: blur(2px);
+  }
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Ease-out-expo — gentle settle at the end for a "soft landing" feel. */
+.page-enter,
+.cs {
+  animation: page-enter-fade-up 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity, filter;
+}
+
+/* Stagger: pick up direct descendants of an opted-in "stagger" zone. */
+.page-enter-stagger > * {
+  opacity: 0;
+  animation: page-enter-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.page-enter-stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.page-enter-stagger > *:nth-child(2) { animation-delay: 0.28s; }
+.page-enter-stagger > *:nth-child(3) { animation-delay: 0.46s; }
+.page-enter-stagger > *:nth-child(4) { animation-delay: 0.64s; }
+.page-enter-stagger > *:nth-child(5) { animation-delay: 0.82s; }
+.page-enter-stagger > *:nth-child(6) { animation-delay: 1s; }
+.page-enter-stagger > *:nth-child(7) { animation-delay: 1.18s; }
+.page-enter-stagger > *:nth-child(n + 8) { animation-delay: 1.32s; }
+
+/* ---- Nested stagger: finer granularity inside key sections ---- */
+
+/* Homepage Hero — nav, tagline, title, skills cascade in after the
+   section itself has arrived via the outer page-enter-stagger. */
+.hero__nav {
+  opacity: 0;
+  animation: page-enter-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+.hero__content > * {
+  opacity: 0;
+  animation: page-enter-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero__content > *:nth-child(1) { animation-delay: 0.4s; }
+.hero__content > *:nth-child(2) { animation-delay: 0.55s; }
+.hero__content > *:nth-child(3) { animation-delay: 0.72s; }
+.hero__content > *:nth-child(n + 4) { animation-delay: 0.88s; }
+
+/* About page — eyebrow, title, paragraphs, collage, toolbelt cascade. */
+.about__text > * {
+  opacity: 0;
+  animation: page-enter-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.about__text > *:nth-child(1) { animation-delay: 0.3s; }
+.about__text > *:nth-child(2) { animation-delay: 0.45s; }
+.about__text > *:nth-child(3) { animation-delay: 0.6s; }
+.about__text > *:nth-child(4) { animation-delay: 0.75s; }
+.about__text > *:nth-child(n + 5) { animation-delay: 0.9s; }
+
+.about__collage {
+  opacity: 0;
+  animation: page-enter-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+}
+
+.about__toolbelt {
+  opacity: 0;
+  animation: page-enter-fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  .cs,
+  .page-enter-stagger > *,
+  .hero__nav,
+  .hero__content > *,
+  .about__text > *,
+  .about__collage,
+  .about__toolbelt {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

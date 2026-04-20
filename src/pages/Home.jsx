@@ -3,13 +3,14 @@ import Work from '../components/Work'
 import Footer from '../components/Footer'
 import useSnapScroll from '../hooks/useSnapScroll'
 import '../styles/snap.css'
+import '../styles/page-enter.css'
 import './Home.css'
 
 function Home() {
   useSnapScroll('.hero, .work__card, .footer')
 
   return (
-    <div className="home-page">
+    <div className="home-page page-enter-stagger">
       <Hero />
       <Work limit={3} showCta />
       <Footer />

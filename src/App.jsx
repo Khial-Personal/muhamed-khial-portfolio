@@ -8,11 +8,13 @@ import TalentHavenCaseStudy from './pages/TalentHavenCaseStudy'
 import AquarabiaCaseStudy from './pages/AquarabiaCaseStudy'
 import SixFlagsCaseStudy from './pages/SixFlagsCaseStudy'
 import BottomNav from './components/BottomNav'
+import Loader from './components/Loader'
 import './App.css'
 
 function App() {
   return (
     <BrowserRouter>
+      <Loader />
       <main className="app">
         <Routes>
           <Route path="/" element={<Home />} />

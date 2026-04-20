@@ -1,20 +1,21 @@
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import About from '../components/About'
 import Experience from '../components/Experience'
 import Footer from '../components/Footer'
 import useSnapScroll from '../hooks/useSnapScroll'
 import '../components/Hero.css'
+import '../styles/page-enter.css'
 import './AboutPage.css'
 
 function AboutPage() {
-  useSnapScroll('.about-page, .experience-page, .footer')
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
+  useLayoutEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }, [])
 
+  useSnapScroll('.about-page, .experience-page, .footer')
+
   return (
-    <>
+    <div className="page-enter-stagger">
       <div className="about-page">
         <div className="about-page__nav-wrap">
           <nav className="hero__nav">
@@ -42,7 +43,7 @@ function AboutPage() {
         <Experience />
       </div>
       <Footer />
-    </>
+    </div>
   )
 }
 
