@@ -16,6 +16,19 @@
   padding: 4rem 4rem 2rem;
 }
 
+/* Shorter viewports (≤ ~15" laptops): the fixed BottomNav overlaps
+   content and 100vh panels are too tall for the content to fit.
+   Let pages grow naturally and pad the bottom so nothing slips
+   under the floating nav pill. */
+@media (max-height: 1100px) {
+  .about-page {
+    padding-bottom: 8rem;
+  }
+  .experience-page {
+    padding-bottom: 8rem;
+  }
+}
+
 .experience-page + .footer {
   margin-top: -56px;
   padding-top: calc(4rem + 56px);

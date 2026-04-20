@@ -25,7 +25,7 @@ export default function useSnapScroll(
   useEffect(() => {
     const mqCoarse = window.matchMedia('(pointer: coarse)')
     const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const mqShort = window.matchMedia('(max-height: 900px)')
+    const mqShort = window.matchMedia('(max-height: 1100px)')
     if (mqReduce.matches) return
     // On short viewports the content of a panel can exceed 100vh; the
     // overflow would be unreachable because wheel is hijacked. Let the
