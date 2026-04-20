@@ -20,6 +20,8 @@ html.snap-scroll body {
 html.snap-scroll .hero,
 html.snap-scroll .work-page__intro,
 html.snap-scroll .work__card,
+html.snap-scroll .about-page,
+html.snap-scroll .experience-page,
 html.snap-scroll .footer {
   min-height: 100vh;
 }
@@ -158,6 +160,8 @@ html.snap-scroll .hero__shape {
   html.snap-scroll .hero,
   html.snap-scroll .work-page__intro,
   html.snap-scroll .work__card,
+  html.snap-scroll .about-page,
+  html.snap-scroll .experience-page,
   html.snap-scroll .footer {
     min-height: auto;
   }
@@ -176,6 +180,8 @@ html.snap-scroll .hero__shape {
   html.snap-scroll .hero,
   html.snap-scroll .work-page__intro,
   html.snap-scroll .work__card,
+  html.snap-scroll .about-page,
+  html.snap-scroll .experience-page,
   html.snap-scroll .footer {
     min-height: auto;
   }

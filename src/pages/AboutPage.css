@@ -1,10 +1,46 @@
 .about-page {
-  padding-top: 6rem;
   padding-bottom: 2rem;
   background: #fafaf7;
   position: relative;
   overflow: hidden;
+  z-index: 1;
 }
+
+.experience-page {
+  background: #fafaf7;
+  position: relative;
+  overflow: hidden;
+  border-bottom-left-radius: 56px;
+  border-bottom-right-radius: 56px;
+  z-index: 1;
+  padding: 4rem 4rem 2rem;
+}
+
+.experience-page + .footer {
+  margin-top: -56px;
+  padding-top: calc(4rem + 56px);
+  position: relative;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .experience-page {
+    padding: 2.5rem 1.5rem 2rem;
+  }
+}
+
+.about-page__nav-wrap {
+  padding: 2rem 4rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .about-page__nav-wrap {
+    padding: 1.5rem 1.5rem 0;
+  }
+}
+
 
 .about-page::before,
 .about-page::after {
@@ -38,8 +74,3 @@
   z-index: 1;
 }
 
-@media (max-width: 768px) {
-  .about-page {
-    padding-top: 4rem;
-  }
-}

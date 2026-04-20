@@ -1,9 +1,10 @@
 import './Footer.css'
 
 const EMAIL = 'muhamed.khial@gmail.com'
-const RESUME_URL = '/resume.pdf'
-const DRIBBBLE_URL = 'https://dribbble.com/'
-const LINKEDIN_URL = 'https://www.linkedin.com/'
+const RESUME_URL =
+  'https://drive.google.com/file/d/145sY0OgvYLoQ95O5R3UOsBjznI3_ShnY/view?usp=drive_link'
+const DRIBBBLE_URL = 'https://dribbble.com/MoKhial'
+const LINKEDIN_URL = 'https://www.linkedin.com/in/muhamed-khial/'
 
 const contactLinks = [
   { label: EMAIL, href: `mailto:${EMAIL}`, external: false },

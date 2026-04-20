@@ -76,7 +76,7 @@ function Hero() {
 
       <nav className="hero__nav">
         <span className="hero__brand">
-          <span className="hero__logo">MK.</span>
+          <span className="hero__logo">Muhamed Khial</span>
           <span className="hero__version">Portfolio v335</span>
         </span>
         <ul className="hero__links">

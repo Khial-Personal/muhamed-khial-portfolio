@@ -41,7 +41,8 @@ const items = [
   {
     id: 'resume',
     label: 'Resume',
-    to: '/#resume',
+    to: 'https://drive.google.com/file/d/145sY0OgvYLoQ95O5R3UOsBjznI3_ShnY/view?usp=drive_link',
+    external: true,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z" />
@@ -106,6 +107,18 @@ function BottomNav() {
       e.preventDefault()
       window.scrollTo({ top: 0, behavior: 'smooth' })
       setActive('home')
+      return
+    }
+    // About link while already on /about: scroll to top
+    if (item.id === 'about' && location.pathname === '/about') {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+    // Work link while already on /work: scroll to top
+    if (item.id === 'work' && location.pathname === '/work') {
+      e.preventDefault()
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     }
   }
 
@@ -114,16 +127,32 @@ function BottomNav() {
       <ul className="bnav__list">
         {items.map((item) => {
           const isActive = active === item.id
+          const content = (
+            <>
+              <span className="bnav__icon" aria-hidden="true">{item.icon}</span>
+              <span className="bnav__label">{item.label}</span>
+            </>
+          )
           return (
             <li key={item.id} className="bnav__item">
-              <Link
-                to={item.to}
-                className={`bnav__link ${isActive ? 'bnav__link--active' : ''}`}
-                onClick={(e) => handleClick(e, item)}
-              >
-                <span className="bnav__icon" aria-hidden="true">{item.icon}</span>
-                <span className="bnav__label">{item.label}</span>
-              </Link>
+              {item.external ? (
+                <a
+                  href={item.to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`bnav__link ${isActive ? 'bnav__link--active' : ''}`}
+                >
+                  {content}
+                </a>
+              ) : (
+                <Link
+                  to={item.to}
+                  className={`bnav__link ${isActive ? 'bnav__link--active' : ''}`}
+                  onClick={(e) => handleClick(e, item)}
+                >
+                  {content}
+                </Link>
+              )}
             </li>
           )
         })}
