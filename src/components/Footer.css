@@ -209,7 +209,7 @@
 }
 
 .footer__marquee-item {
-  font-size: clamp(3rem, 8vw, 6rem);
+  font-size: clamp(1.75rem, 8vw, 6rem);
   font-style: italic;
   font-weight: 900;
   letter-spacing: -0.03em;
@@ -220,7 +220,7 @@
   color: transparent;
   display: inline-flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   white-space: nowrap;
 }
 
@@ -255,6 +255,10 @@
     padding: 4rem 1.5rem 2rem;
   }
 
+  .footer__inner {
+    gap: 3rem;
+  }
+
   .footer__grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -272,6 +276,27 @@
   .footer__meta {
     justify-content: center;
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 3rem 1.25rem 1.5rem;
+  }
+  .footer__intro {
+    font-size: 1rem;
+  }
+  .footer__status {
+    font-size: 0.8rem;
+  }
+  .footer__marquee {
+    margin: 0 -1.25rem;
+  }
+  .footer__marquee-track {
+    gap: 2rem;
+  }
+  .footer__marquee-item {
+    gap: 1.25rem;
   }
 }
 

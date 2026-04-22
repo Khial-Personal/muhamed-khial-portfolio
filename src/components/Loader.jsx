@@ -38,6 +38,11 @@ function Loader() {
 
   // Lock body scroll + hide the app behind the loader so the site
   // doesn't flash into view before the loader paints on top.
+  //
+  // `loader-active` pauses all entrance animations. We remove it the
+  // moment the loader begins exiting (not when it's fully gone) so the
+  // page cascade plays *during* the loader slide-up, not after — no
+  // awkward empty-page beat between loader and content.
   useEffect(() => {
     const root = document.documentElement
     if (stage === 'enter') {
@@ -45,7 +50,7 @@ function Loader() {
       root.classList.add('loader-active')
       root.classList.remove('loader-exiting')
     } else if (stage === 'exit') {
-      root.classList.add('loader-active')
+      root.classList.remove('loader-active')
       root.classList.add('loader-exiting')
     } else {
       document.body.style.overflow = ''

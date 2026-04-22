@@ -243,15 +243,49 @@
 
 @media (max-width: 768px) {
   .work {
-    padding: 4rem 1.5rem 6rem;
+    padding: 4rem 1.25rem 5rem;
+  }
+  .work__header {
+    margin-bottom: 3rem;
   }
   .work__grid {
-    gap: 4rem;
+    gap: 3.5rem;
   }
   .work__card,
   .work__card--right {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
     direction: ltr;
+  }
+  .work__thumb {
+    border-radius: 20px;
+  }
+  .work__info {
+    padding: 0.25rem 0 0;
+  }
+  .work__desc {
+    font-size: 1rem;
+  }
+  .work__footer {
+    margin-top: 3.5rem;
+  }
+  .work__more {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .work {
+    padding: 3rem 1rem 4rem;
+  }
+  .work__grid {
+    gap: 2.5rem;
+  }
+  .work__year {
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
   }
 }

@@ -142,7 +142,7 @@ html.loader-exiting .app {
   font-family: 'Playwrite DE SAS', cursive;
   font-optical-sizing: auto;
   font-weight: 400;
-  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  font-size: clamp(1.75rem, 7vw, 4.5rem);
   line-height: 1.05;
   color: #1a1a1a;
   margin: 0;
@@ -258,6 +258,32 @@ html.loader-exiting .app {
     opacity: 1;
     border-bottom-left-radius: 56px;
     border-bottom-right-radius: 56px;
+  }
+}
+
+/* Smaller blobs on phones so they don't overwhelm the viewport. */
+@media (max-width: 560px) {
+  .loader__shape--a {
+    width: 260px;
+    height: 260px;
+    top: -80px;
+    left: -60px;
+  }
+  .loader__shape--b {
+    width: 220px;
+    height: 220px;
+    bottom: -60px;
+    right: -60px;
+  }
+  .loader__shape--c {
+    width: 180px;
+    height: 180px;
+  }
+  .loader__eyebrow {
+    font-size: 0.7rem;
+  }
+  .loader__tag {
+    font-size: 0.8rem;
   }
 }
 

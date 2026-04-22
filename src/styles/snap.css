@@ -173,23 +173,78 @@ html.snap-scroll .hero__shape {
 }
 
 /* ------------------------------------------------------------------
-   Mobile / coarse pointers: full viewport min-heights are too heavy
-   and snap/reveal are disabled anyway. Let the content flow.
+   Mobile / coarse pointers: match the desktop "one section per screen"
+   feel using native CSS scroll-snap.
+
+   Why CSS-snap rather than the JS hook?
+   - The JS hook's touch handlers are gated off for coarse pointers
+     (see `useSnapScroll.js`), so it's a no-op on touch anyway.
+   - CSS scroll-snap plays nice with native momentum scrolling and
+     gracefully handles panels that are taller than the viewport (About
+     bio content, footer) — mandatory snap would trap users at the top
+     of those panels, proximity snap still gives the "snap to section"
+     feel without the trap.
+   - Experience gets broken into per-job panels so each role gets full
+     viewport attention instead of being stuck inside one tall panel.
 ------------------------------------------------------------------- */
 @media (max-width: 768px), (pointer: coarse) {
+  html.snap-scroll {
+    scroll-snap-type: y proximity;
+  }
+
+  /* Short panels that fit comfortably in one viewport become 100vh
+     snap targets. `100dvh` accounts for the dynamic mobile browser
+     chrome — `100vh` on mobile Safari/Chrome includes the area behind
+     the address bar, which would push content below the visible edge.
+
+     Timeline items intentionally excluded: each job card is only
+     ~200px of content, so 100dvh per item leaves a huge empty slab
+     and makes the whole Experience section feel endless to scroll.
+     The timeline flows naturally inside `.experience-page` instead. */
   html.snap-scroll .hero,
-  html.snap-scroll .work-page__intro,
   html.snap-scroll .work__card,
+  html.snap-scroll .footer {
+    min-height: 100vh;
+    min-height: 100dvh;
+    scroll-snap-align: start;
+  }
+
+  /* Page-level containers that hold tall content (bio + collage +
+     toolbelt; the full timeline) shouldn't snap — they flow naturally
+     and the panels before/after them handle the snap beats. */
   html.snap-scroll .about-page,
   html.snap-scroll .experience-page,
-  html.snap-scroll .footer {
+  html.snap-scroll .work-page__intro {
     min-height: auto;
   }
 
+  /* Work card keeps its existing grid layout (align-content: center is
+     inherited from the desktop snap rule above) — just reset the
+     desktop sticky-header padding that doesn't apply here. */
+  html.snap-scroll .work__card {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    scroll-margin-top: 0;
+  }
+
+  /* Work header: not sticky on mobile snap — a sticky header would
+     overlap the snapped card and it'd look like broken layering. It
+     flows naturally between Hero and Card 1. */
   html.snap-scroll .work__header {
-    padding: 1rem 1.5rem;
+    position: static;
+    padding: 0.85rem 1.25rem;
+    gap: 0.75rem;
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+  }
+  html.snap-scroll .work__header-text {
+    gap: 0.35rem 1rem;
+  }
+  html.snap-scroll .work__heading {
+    font-size: 1rem;
+  }
+  html.snap-scroll .work__header-cta {
+    font-size: 0.8rem;
   }
 }
 

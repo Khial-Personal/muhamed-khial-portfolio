@@ -2,7 +2,7 @@ import { useLayoutEffect } from 'react'
 import About from '../components/About'
 import Experience from '../components/Experience'
 import Footer from '../components/Footer'
-import useSnapScroll from '../hooks/useSnapScroll'
+// import useSnapScroll from '../hooks/useSnapScroll'
 import '../components/Hero.css'
 import '../styles/page-enter.css'
 import './AboutPage.css'
@@ -12,7 +12,8 @@ function AboutPage() {
     window.scrollTo({ top: 0, behavior: 'instant' })
   }, [])
 
-  useSnapScroll('.about-page, .experience-page, .footer')
+  // Snap disabled on About for testing — re-enable by uncommenting:
+  // useSnapScroll('.about-page, .experience-page, .footer')
 
   return (
     <div className="page-enter-stagger">

@@ -25,7 +25,13 @@
 
 @media (max-width: 768px) {
   .experience-page {
-    padding: 2.5rem 1.5rem 2rem;
+    padding: 2.5rem 1.25rem 2rem;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+  }
+  .experience-page + .footer {
+    margin-top: -32px;
+    padding-top: calc(3rem + 32px);
   }
 }
 
@@ -37,7 +43,19 @@
 
 @media (max-width: 768px) {
   .about-page__nav-wrap {
-    padding: 1.5rem 1.5rem 0;
+    padding: 1.25rem 1.25rem 0;
+  }
+  /* Shrink the oversized blurs that otherwise overflow mobile. */
+  .about-page::before {
+    width: 240px;
+    height: 240px;
+    top: -80px;
+    right: -80px;
+  }
+  .about-page::after {
+    width: 220px;
+    height: 220px;
+    left: -80px;
   }
 }
 

@@ -47,7 +47,7 @@ function Work({
           return (
             <article
               key={project.id}
-              className={`work__card ${idx % 2 === 0 ? 'work__card--left' : 'work__card--right'} ${
+              className={`work__card reveal ${idx % 2 === 0 ? 'work__card--left' : 'work__card--right'} ${
                 href ? 'work__card--linked' : ''
               }`}
               style={{ '--card-color': project.color }}

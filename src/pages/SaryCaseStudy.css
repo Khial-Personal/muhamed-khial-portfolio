@@ -144,7 +144,11 @@
   margin-bottom: 2rem;
 }
 .cs-hero__title {
-  font-size: clamp(2.75rem, 6vw, 4.75rem);
+  /* Min dropped from 2.75rem → 2rem so long italic words ("Segmentation",
+     "complete") don't clip past the right edge on 375px viewports. The
+     italic lean on Carter One glyphs pokes a few extra pixels past the
+     text box, so the content width alone isn't the full story. */
+  font-size: clamp(2rem, 6vw, 4.75rem);
   line-height: 1.05;
   letter-spacing: -0.03em;
   margin: 0 0 1.5rem;
@@ -722,6 +726,12 @@
 @media (max-width: 768px) {
   .cs-section {
     padding: 3.5rem 1.25rem;
+  }
+  /* Reserve a little right-side breathing room so italic glyph overshoot
+     ("software", "complete", Carter One's curving letter tails) doesn't
+     graze the container / viewport edge on 375px screens. */
+  .cs-hero__title {
+    padding-right: 0.5rem;
   }
   .cs-hero__meta,
   .cs-glance__grid,

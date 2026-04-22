@@ -18,7 +18,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__grid">
-          <div className="footer__left">
+          <div className="footer__left reveal">
             <h2 className="footer__statement">
               <em>Let's Connect</em>
             </h2>
@@ -33,7 +33,7 @@ function Footer() {
             </p>
           </div>
 
-          <nav className="footer__right" aria-label="Contact">
+          <nav className="footer__right reveal" aria-label="Contact" style={{ '--r-delay': '0.12s' }}>
             <span className="footer__contact-label">Get in touch</span>
             <ul className="footer__links">
               {contactLinks.map((l) => (
@@ -56,7 +56,7 @@ function Footer() {
           </nav>
         </div>
 
-        <div className="footer__marquee" aria-hidden="true">
+        <div className="footer__marquee reveal" aria-hidden="true">
           <div className="footer__marquee-track">
             {Array.from({ length: 4 }).map((_, i) => (
               <span key={i} className="footer__marquee-item">

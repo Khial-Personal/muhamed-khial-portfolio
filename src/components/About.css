@@ -565,13 +565,145 @@
 
 @media (max-width: 768px) {
   .about {
-    padding: 5rem 1.5rem;
+    padding: 4rem 1.25rem;
   }
   .about__grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+    margin-bottom: 3.5rem;
   }
   .about__collage {
-    min-height: 380px;
+    min-height: 320px;
+    max-width: 460px;
+    margin-inline: auto;
+  }
+
+  /* Toolbelt: on mobile, switch from naked icon squares + hover
+     tooltips (which don't fire on touch) to inline pills where each
+     tool shows its icon AND name. Pills wrap naturally so there are
+     no awkward trailing empty cells, and the user can actually tell
+     what every tool is without hovering. */
+  .about__toolbelt {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.5rem 0;
+  }
+  .about__tools {
+    gap: 8px;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .about__tool {
+    width: auto;
+    height: auto;
+    min-width: 0;
+    flex: 0 0 auto;
+    padding: 0.4rem 0.85rem 0.4rem 0.5rem;
+    border-radius: 999px;
+    gap: 0.5rem;
+  }
+  .about__tool img {
+    width: 20px;
+    height: 20px;
+  }
+  .about__tool-mono {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 0.8rem;
+  }
+  /* The hover tooltip becomes the inline label. Static position,
+     always visible, no animation — it's just text next to the icon. */
+  .about__tool-tip {
+    position: static;
+    transform: none;
+    background: transparent;
+    color: #333;
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 1;
+    pointer-events: auto;
+    transition: none;
+  }
+  /* Kill the hover lift on touch — there's no hover state to tease. */
+  .about__tool:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .about__tool:hover .about__tool-tip {
+    transform: none;
+  }
+
+  .about__experience {
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+  }
+  .about__experience-head {
+    margin-bottom: 2rem;
+  }
+
+  /* Kill the stacked top-padding between the bio/toolbelt block and
+     the Experience section. At desktop widths each block gets its
+     own roomy padding, but on mobile those paddings stack up to
+     ~200px of empty cream, making the Experience heading feel
+     exiled from the content above. Higher-specificity selectors
+     (`.about.about--experience`, `div.experience-page`) so these
+     win the cascade against the narrower `.about { padding }` rule
+     inside the 420px media query further down. */
+  .about.about--experience {
+    padding-top: 0;
+  }
+  /* Standalone variant of the experience wrapper also inherits the
+     `.about__experience { margin-top; padding-top }` on mobile because
+     `--standalone` is a same-specificity class rule earlier in source
+     order. Double-class selector wins. */
+  .about__experience.about__experience--standalone {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  div.experience-page {
+    padding-top: 0;
+  }
+  div.about-page {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .about {
+    padding: 3rem 1rem;
+  }
+  .about__collage {
+    min-height: 280px;
+  }
+  .about__tl-item {
+    grid-template-columns: 18px 1fr;
+    gap: 0.75rem;
+  }
+  .about__tl-card {
+    padding: 1rem;
+    border-radius: 14px;
+  }
+  .about__tl-top {
+    gap: 0.75rem;
+  }
+  .about__tl-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+  .about__tl-company {
+    font-size: 1.05rem;
+  }
+  .about__tl-role {
+    font-size: 0.875rem;
+  }
+  .about__tl-blurb {
+    font-size: 0.875rem;
   }
 }

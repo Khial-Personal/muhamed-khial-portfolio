@@ -1,0 +1,47 @@
+/* ------------------------------------------------------------------
+   Scroll-triggered reveal.
+
+   Any element with `.reveal` starts invisible and slightly offset. The
+   `useRevealOnScroll` hook toggles `.reveal--in` when the element
+   enters the viewport — the transition fades + rises it into place.
+
+   - Works identically on mobile (native scroll) and desktop (snap scroll).
+   - Respects prefers-reduced-motion via media query below AND via the
+     hook, which immediately marks everything revealed in that mode.
+------------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal--in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Optional per-element delay via inline style: style="--r-delay: 0.15s"
+   Useful for staggering a handful of siblings that all enter together. */
+.reveal {
+  transition-delay: var(--r-delay, 0s);
+}
+
+/* Pause reveal animations behind the first-visit loader so they don't
+   play through an empty viewport. The loader's exit removes this class
+   just before the curtain lifts. */
+html.loader-active .reveal {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

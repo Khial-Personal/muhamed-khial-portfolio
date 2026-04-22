@@ -9,9 +9,12 @@ import AquarabiaCaseStudy from './pages/AquarabiaCaseStudy'
 import SixFlagsCaseStudy from './pages/SixFlagsCaseStudy'
 import BottomNav from './components/BottomNav'
 import Loader from './components/Loader'
+import useRevealOnScroll from './hooks/useRevealOnScroll'
+import './styles/reveal.css'
 import './App.css'
 
 function App() {
+  useRevealOnScroll()
   return (
     <BrowserRouter>
       <Loader />

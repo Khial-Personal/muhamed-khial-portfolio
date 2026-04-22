@@ -48,7 +48,7 @@ function Experience() {
   return (
     <section className="about about--experience">
       <div className="about__experience about__experience--standalone">
-        <div className="about__experience-head">
+        <div className="about__experience-head reveal">
           <span className="about__eyebrow">
             <span className="about__star">✦</span> Experience
           </span>
@@ -61,7 +61,7 @@ function Experience() {
           {jobs.map((job) => (
             <li
               key={job.company}
-              className="about__tl-item"
+              className="about__tl-item reveal"
               style={{ '--job-color': job.current ? job.bg : '#c9c9c9' }}
             >
               <span className="about__tl-rail" aria-hidden="true">

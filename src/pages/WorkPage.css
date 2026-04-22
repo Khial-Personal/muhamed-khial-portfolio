@@ -87,6 +87,25 @@
 
 @media (max-width: 768px) {
   .work-page__intro {
-    padding: 2rem 1.5rem 1rem;
+    padding: 2.5rem 1.25rem 1rem;
+  }
+  /* Shrink the oversized intro blurs so they don't cause horizontal
+     scroll or overwhelm the tiny header area. */
+  .work-page__intro::before {
+    width: 240px;
+    height: 240px;
+    top: -80px;
+    left: -80px;
+  }
+  .work-page__intro::after {
+    width: 220px;
+    height: 220px;
+    right: -60px;
+  }
+  .work-page__eyebrow {
+    margin-bottom: 1rem;
+  }
+  .work-page__subtitle {
+    font-size: 1rem;
   }
 }

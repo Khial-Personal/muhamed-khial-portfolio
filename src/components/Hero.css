@@ -144,6 +144,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  /* min-width:0 lets this flex child shrink below its intrinsic content
+     width (the skills track is max-content and would otherwise force
+     the column to grow past the viewport on mobile). */
+  min-width: 0;
+  width: 100%;
   max-width: 900px;
   margin: 0 auto;
   text-align: center;
@@ -153,6 +158,9 @@
 .hero__skills {
   position: relative;
   width: 100%;
+  /* Same as above — the track inside is `width: max-content` and will
+     force parent flex sizing without this. */
+  min-width: 0;
   max-width: 720px;
   margin: 2rem auto 0;
   overflow: hidden;
@@ -219,7 +227,7 @@
 }
 
 .hero__title {
-  font-size: 48px;
+  font-size: clamp(2rem, 6vw, 3rem);
   line-height: 1.1;
   font-weight: 700;
   letter-spacing: -0.03em;
@@ -314,6 +322,89 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 1.5rem;
+    padding: 1.25rem;
+  }
+
+  /* Shrink oversized blur shapes so they don't dominate the mobile viewport
+     or cause horizontal overflow. */
+  .hero__shape--1 {
+    width: 220px;
+    height: 220px;
+    top: -60px;
+    right: -40px;
+  }
+  .hero__shape--2 {
+    width: 180px;
+    height: 180px;
+    left: -40px;
+  }
+  .hero__shape--3 {
+    width: 160px;
+    height: 160px;
+    right: 10%;
+  }
+
+  /* Tighter nav: smaller gap, smaller links, stop CTA text from pushing
+     the whole nav past the viewport. */
+  .hero__nav {
+    padding: 0.5rem 0;
+  }
+  .hero__links {
+    gap: 0.9rem;
+  }
+  .hero__links a {
+    font-size: 0.85rem;
+  }
+  .hero__cta {
+    height: 40px;
+    padding: 0 1rem;
+    font-size: 0.85rem;
+  }
+
+  /* Reclaim vertical space — hero content is the whole screen on mobile. */
+  .hero__content {
+    padding: 2rem 0 3rem;
+  }
+
+  /* Action buttons — tighter, stack gracefully on very small screens. */
+  .hero__actions {
+    gap: 0.75rem;
+  }
+  .hero__btn {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  /* Skill chips: smaller padding so more fit in the masked strip. */
+  .hero__skill {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 420px) {
+  /* On the smallest phones, hide secondary nav links entirely — the CTA
+     + bottom nav are enough wayfinding. */
+  .hero__links li:not(:last-child) {
+    display: none;
+  }
+  .hero__title {
+    font-size: clamp(1.75rem, 8vw, 2.25rem);
+  }
+  .hero__subtitle {
+    font-size: 1rem;
+  }
+  /* Keep brand on a single line and hide the version chip — saves
+     the vertical cost of a wrapped nav and lets the hero title breathe. */
+  .hero__brand {
+    white-space: nowrap;
+  }
+  .hero__version {
+    display: none;
+  }
+  .hero__cta {
+    padding: 0 0.85rem;
+    height: 36px;
+    font-size: 0.8rem;
   }
 }

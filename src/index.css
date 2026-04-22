@@ -25,3 +25,13 @@ body {
   background: #ffd6a5;
   color: #1a1a1a;
 }
+
+/* Mobile safety net: blurred background shapes and full-bleed sections
+   occasionally leak a few pixels past the viewport edge and cause a
+   phantom horizontal scroll on phones. Clip it globally on small screens
+   (html-level only — body-level would break position: sticky). */
+@media (max-width: 768px) {
+  html {
+    overflow-x: hidden;
+  }
+}
